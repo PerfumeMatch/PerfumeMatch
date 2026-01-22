@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>PerfumeMatch - Matching</title>
+<style>form {
+max-width: 500px;
+margin: 0 auto;
+background-color: #fff6f0;
+padding: 30px;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+div {
+margin-bottom: 20px;
+text-align: left;
+}
+
+p strong {
+font-size: 18px;
+color: #b85c38;
+}
+
+input[type="radio"] {
+margin-right: 10px;
+transform: scale(1.2);
+cursor: pointer;
+}
+
+button {
+background-color: #b85c38;
+color: white;
+border: none;
+padding: 12px 25px;
+font-size: 16px;
+border-radius: 8px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+button:hover {
+background-color: #a04e2f;
+}
+
+#result {
+font-size: 20px;
+color: #b85c38;
+}
+body {
+font-family: Arial, sans-serif;
+background-color: #fdf6f0;
+color: #333333;
+text-align: center;
+padding: 50px;
+}
+
+h1 {
+color: #b85c38;
+font-size: 48px;
+margin-bottom: 20px;
+}
+
+p {
+font-size: 18px;
+line-height: 1.6;
+max-width: 600px;
+margin: 10px auto;
+}
+</style>
+</head>
+<body><body>
+
+<h1>Matching PerfumeMatch</h1>
+<p>Réponds à ces questions pour découvrir ton parfum parfait :</p>
+
+<form id="quiz-form">
+<div>
+<p><strong>1. Quelle ambiance te correspond le plus ?</strong></p>
+<input type="radio" name="q1" value="floral" id="q1a"><label for="q1a">Florale</label><br>
+<input type="radio" name="q1" value="fruité" id="q1b"><label for="q1b">Fruité</label><br>
+<input type="radio" name="q1" value="boisé" id="q1c"><label for="q1c">Boisé</label>
+</div>
+
+<div>
+<p><strong>2. Quelle saison préfères-tu ?</strong></p>
+<input type="radio" name="q2" value="printemps" id="q2a"><label for="q2a">Printemps</label><br>
+<input type="radio" name="q2" value="été" id="q2b"><label for="q2b">Été</label><br>
+<input type="radio" name="q2" value="automne" id="q2c"><label for="q2c">Automne</label><br>
+<input type="radio" name="q2" value="hiver" id="q2d"><label for="q2d">Hiver</label>
+</div>
+
+<div>
+<p><strong>3. Préfères-tu les parfums légers ou intenses ?</strong></p>
+<input type="radio" name="q3" value="léger" id="q3a"><label for="q3a">Léger</label><br>
+<input type="radio" name="q3" value="intense" id="q3b"><label for="q3b">Intense</label>
+</div>
+
+<button type="button" onclick="showResult()">Voir mon parfum</button>
+</form>
+
+<p id="result" style="margin-top:30px; font-weight:bold;"></p>
+
+<script>
+function showResult() {
+const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+
+if(!q1 || !q2 || !q3){
+alert("Réponds à toutes les questions !");
+return;
+}
+
+// Ici tu peux personnaliser les résultats selon les réponses
+let parfum = "Ton parfum idéal est un parfum floral et léger pour l'été !";
+
+document.getElementById("result").textContent = parfum;
+}
+</script>
+
+</body>
+
+<h1>Matching PerfumeMatch</h1>
+<p>Cette page sera le point de départ pour trouver le parfum qui vous correspond.</p>
+
+</body>
+</html>
