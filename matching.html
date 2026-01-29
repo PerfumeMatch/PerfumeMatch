@@ -6,8 +6,8 @@
 <title>Matching PerfumeMatch</title>
 <style>
 body {
-font-family: Arial, sans-serif;
-background: #fdf6f0;
+font-family: 'Arial', sans-serif;
+background: linear-gradient(to right, #fdf6f0, #fff8f2);
 color: #333;
 margin: 0;
 padding: 0 20px;
@@ -24,53 +24,76 @@ form {
 max-width: 700px;
 margin: 20px auto;
 background: #fff;
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+padding: 25px;
+border-radius: 12px;
+box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 div.question {
-margin-bottom: 20px;
+margin-bottom: 25px;
 }
 label {
 display: block;
-margin-bottom: 5px;
+margin-bottom: 8px;
 cursor: pointer;
+transition: transform 0.2s;
+}
+label:hover {
+transform: scale(1.02);
 }
 button {
 display: block;
-margin: 20px auto 0 auto;
-padding: 10px 25px;
-font-size: 16px;
-background-color: #5a2a27;
+margin: 25px auto 0 auto;
+padding: 12px 30px;
+font-size: 17px;
+background-color: #b84a3b;
 color: white;
 border: none;
-border-radius: 5px;
+border-radius: 6px;
 cursor: pointer;
+transition: background-color 0.3s, transform 0.2s;
 }
 button:hover {
-background-color: #7b3b36;
+background-color: #d05c4d;
+transform: scale(1.05);
 }
 #result {
 max-width: 700px;
-margin: 30px auto;
-padding: 20px;
+margin: 35px auto;
+padding: 25px;
 background: #fff4f1;
-border-radius: 10px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+border-radius: 12px;
+box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+opacity: 0;
+transition: opacity 0.8s ease-in;
 }
 .perfume-card {
 background: #fff;
-border-radius: 8px;
-padding: 15px;
-margin: 10px 0;
-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+border-radius: 10px;
+padding: 15px 20px;
+margin: 15px 0;
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+display: flex;
+align-items: center;
+gap: 15px;
+transform: translateY(20px);
+opacity: 0;
+transition: all 0.5s ease;
+}
+.perfume-card.show {
+transform: translateY(0);
+opacity: 1;
 }
 .perfume-card h3 {
 margin: 0 0 5px 0;
 color: #b84a3b;
+font-size: 18px;
 }
 .perfume-card p {
 margin: 0;
+font-size: 14px;
+}
+.perfume-emoji {
+font-size: 30px;
 }
 </style>
 </head>
@@ -81,6 +104,7 @@ margin: 0;
 
 <form id="quiz-form">
 
+<!-- 1 -->
 <div class="question">
 <p><strong>1. Quelle ambiance te correspond le plus ?</strong></p>
 <input type="radio" name="q1" value="floral" id="q1a"><label for="q1a">Florale</label>
@@ -88,6 +112,7 @@ margin: 0;
 <input type="radio" name="q1" value="boisé" id="q1c"><label for="q1c">Boisé</label>
 </div>
 
+<!-- 2 -->
 <div class="question">
 <p><strong>2. Quelle saison préfères-tu ?</strong></p>
 <input type="radio" name="q2" value="printemps" id="q2a"><label for="q2a">Printemps</label>
@@ -96,12 +121,14 @@ margin: 0;
 <input type="radio" name="q2" value="hiver" id="q2d"><label for="q2d">Hiver</label>
 </div>
 
+<!-- 3 -->
 <div class="question">
 <p><strong>3. Préfères-tu les parfums légers ou intenses ?</strong></p>
 <input type="radio" name="q3" value="léger" id="q3a"><label for="q3a">Léger</label>
 <input type="radio" name="q3" value="intense" id="q3b"><label for="q3b">Intense</label>
 </div>
 
+<!-- 4 -->
 <div class="question">
 <p><strong>4. À quelle fréquence te parfumes-tu ?</strong></p>
 <input type="radio" name="q4" value="tous_les_jours" id="q4a"><label for="q4a">Tous les jours</label>
@@ -110,6 +137,7 @@ margin: 0;
 <input type="radio" name="q4" value="rarement" id="q4d"><label for="q4d">Rarement</label>
 </div>
 
+<!-- 5 -->
 <div class="question">
 <p><strong>5. Comment décrirais-tu ton caractère ? (choisis 2 max)</strong></p>
 <input type="checkbox" name="q5" value="calme" id="q5a"><label for="q5a">Calme & posé·e</label>
@@ -120,6 +148,7 @@ margin: 0;
 <input type="checkbox" name="q5" value="independant" id="q5f"><label for="q5f">Indépendant·e</label>
 </div>
 
+<!-- 6 -->
 <div class="question">
 <p><strong>6. Ton univers te parle le plus quand il est…</strong></p>
 <input type="radio" name="q6" value="nature" id="q6a"><label for="q6a">Nature / air libre</label>
@@ -129,6 +158,7 @@ margin: 0;
 <input type="radio" name="q6" value="creatif" id="q6e"><label for="q6e">Créatif / atypique</label>
 </div>
 
+<!-- 7 -->
 <div class="question">
 <p><strong>7. Plutôt parfum dit…</strong></p>
 <input type="radio" name="q7" value="feminin" id="q7a"><label for="q7a">Féminin</label>
@@ -138,6 +168,7 @@ margin: 0;
 <input type="radio" name="q7" value="peu_importe" id="q7e"><label for="q7e">Je m’en fiche complètement</label>
 </div>
 
+<!-- 8 -->
 <div class="question">
 <p><strong>8. Le parfum idéal pour toi, c’est avant tout…</strong></p>
 <input type="radio" name="q8" value="signature" id="q8a"><label for="q8a">Une signature</label>
@@ -153,7 +184,7 @@ margin: 0;
 <div id="result"></div>
 
 <script>
-// Profils
+// Profils et recommandations avec emoji
 const profils = {
 "Frais Libre": 0,
 "Doux Confort": 0,
@@ -163,17 +194,15 @@ const profils = {
 "Créatif·ve Libre": 0
 };
 
-// Recommandations
 const recommandations = {
-"Frais Libre":[{name:"Light Breeze",brand:"Maison Margiela",desc:"Fraîcheur aérienne et vivifiante."},{name:"Green Escape",brand:"Byredo",desc:"Une balade dans la nature, légère et relaxante."},{name:"Citrus Sky",brand:"Dior",desc:"Zeste de vitalité pour tous les jours."}],
-"Doux Confort":[{name:"Soft Whisper",brand:"YSL",desc:"Chaleur douce et enveloppante."},{name:"Vanilla Dream",brand:"Juliette Has A Gun",desc:"Tendre et réconfortant, parfait pour soi."},{name:"Cashmere Touch",brand:"Maison Francis Kurkdjian",desc:"Un cocon olfactif délicat."}],
-"Gourmand Sensuel":[{name:"Sweet Desire",brand:"Serge Lutens",desc:"Gourmand, intense et passionné."},{name:"Amber Nights",brand:"Byredo",desc:"Chaleur et charisme pour marquer les esprits."},{name:"Vanilla Spice",brand:"Dior",desc:"Plaisir riche et captivant."}],
-"Boisé Caractère":[{name:"Forest Heart",brand:"Hermès",desc:"Élégant, profond et affirmé."},{name:"Oak & Smoke",brand:"Tom Ford",desc:"Boisé intense et mystérieux."},{name:"Cedar Legend",brand:"Maison Margiela",desc:"Force tranquille et naturel."}],
-"Intense Mystère":[{name:"Night Whisper",brand:"Serge Lutens",desc:"Profond et magnétique, mystérieux."},{name:"Encens Sacré",brand:"L’Artisan Parfumeur",desc:"Une aura de mystère et de contraste."},{name:"Oriental Shadow",brand:"Byredo",desc:"Intense, envoûtant et singulier."}],
-"Créatif·ve Libre":[{name:"Unique Twist",brand:"Juliette Has A Gun",desc:"Audacieux, original et atypique."},{name:"Metallic Bloom",brand:"Maison Margiela",desc:"Surprenant et hors cadre."},{name:"Green Rebel",brand:"Byredo",desc:"Curiosité et expression libre."}]
+"Frais Libre":[{emoji:"🍃",name:"Light Breeze",brand:"Maison Margiela",desc:"Fraîcheur aérienne et vivifiante."},{emoji:"🌿",name:"Green Escape",brand:"Byredo",desc:"Une balade dans la nature, légère et relaxante."},{emoji:"🍋",name:"Citrus Sky",brand:"Dior",desc:"Zeste de vitalité pour tous les jours."}],
+"Doux Confort":[{emoji:"🛋️",name:"Soft Whisper",brand:"YSL",desc:"Chaleur douce et enveloppante."},{emoji:"🍦",name:"Vanilla Dream",brand:"Juliette Has A Gun",desc:"Tendre et réconfortant."},{emoji:"🧣",name:"Cashmere Touch",brand:"Maison Francis Kurkdjian",desc:"Un cocon olfactif délicat."}],
+"Gourmand Sensuel":[{emoji:"🍫",name:"Sweet Desire",brand:"Serge Lutens",desc:"Gourmand, intense et passionné."},{emoji:"🔥",name:"Amber Nights",brand:"Byredo",desc:"Chaleur et charisme."},{emoji:"🍪",name:"Vanilla Spice",brand:"Dior",desc:"Plaisir riche et captivant."}],
+"Boisé Caractère":[{emoji:"🌲",name:"Forest Heart",brand:"Hermès",desc:"Élégant, profond et affirmé."},{emoji:"🪵",name:"Oak & Smoke",brand:"Tom Ford",desc:"Boisé intense et mystérieux."},{emoji:"🪓",name:"Cedar Legend",brand:"Maison Margiela",desc:"Force tranquille et naturel."}],
+"Intense Mystère":[{emoji:"🌙",name:"Night Whisper",brand:"Serge Lutens",desc:"Profond et magnétique, mystérieux."},{emoji:"🕯️",name:"Encens Sacré",brand:"L’Artisan Parfumeur",desc:"Une aura de mystère et de contraste."},{emoji:"🖤",name:"Oriental Shadow",brand:"Byredo",desc:"Intense, envoûtant et singulier."}],
+"Créatif·ve Libre":[{emoji:"🎨",name:"Unique Twist",brand:"Juliette Has A Gun",desc:"Audacieux, original et atypique."},{emoji:"✨",name:"Metallic Bloom",brand:"Maison Margiela",desc:"Surprenant et hors cadre."},{emoji:"🌈",name:"Green Rebel",brand:"Byredo",desc:"Curiosité et expression libre."}]
 };
 
-// Fonction principale
 function showResult(){
 const q1 = document.querySelector('input[name="q1"]:checked')?.value;
 const q2 = document.querySelector('input[name="q2"]:checked')?.value;
@@ -186,28 +215,33 @@ const q8 = document.querySelector('input[name="q8"]:checked')?.value;
 
 if(!q1||!q2||!q3||!q4||!q6||!q7||!q8||q5.length===0){ alert("Réponds à toutes les questions !"); return; }
 
-// Reset
 for(let p in profils) profils[p]=0;
 
-// Scoring simplifié
+importe"].includes(q7)) profils["Créatif·ve Libre"]++;
 const sorted = Object.entries(profils).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
 const principal = sorted[0];
 const secondaires = [sorted[1],sorted[2]];
 
-// Affichage
 const resultDiv = document.getElementById("result");
 resultDiv.innerHTML = `<h2>Profil principal : ${principal}</h2>
 <p>Profils secondaires : ${secondaires.join(", ")}</p>
 <h2>Parfums recommandés :</h2>`;
-recommandations[principal].forEach(p=>{
+
+recommandations[principal].forEach((p,i)=>{
 const card = document.createElement("div");
 card.className="perfume-card";
-card.innerHTML=`<h3>${p.name} (${p.brand})</h3><p>${p.desc}</p>`;
+card.innerHTML=`<span class="perfume-emoji">${p.emoji}</span>
+<div>
+<h3>${p.name} (${p.brand})</h3>
+<p>${p.desc}</p>
+</div>`;
+setTimeout(()=>card.classList.add("show"), i*200);
 resultDiv.appendChild(card);
 });
+
+resultDiv.style.opacity="1";
 }
 </script>
 
 </body>
 </html>
-
