@@ -1,8 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matching PerfumeMatch</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+h1 { color: #333; }
+p { margin-bottom: 10px; }
+button { margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+#result { margin-top: 30px; font-weight: bold; white-space: pre-line; }
+</style>
+</head>
+<body>
+
 <h1>Matching PerfumeMatch</h1>
 <p>Réponds à ces questions pour découvrir ton parfum parfait :</p>
 
 <form id="quiz-form">
-<!-- Les 8 questions restent les mêmes que précédemment -->
 <!-- Question 1 -->
 <div>
 <p><strong>1. Quelle ambiance te correspond le plus ?</strong></p>
@@ -10,16 +25,80 @@
 <input type="radio" name="q1" value="fruité" id="q1b"><label for="q1b">Fruité</label><br>
 <input type="radio" name="q1" value="boisé" id="q1c"><label for="q1c">Boisé</label>
 </div>
-<!-- Question 2 à 8... -->
-<!-- (Copier toutes les questions précédentes ici, inchangé) -->
+
+<!-- Question 2 -->
+<div>
+<p><strong>2. Quelle saison préfères-tu ?</strong></p>
+<input type="radio" name="q2" value="printemps" id="q2a"><label for="q2a">Printemps</label><br>
+<input type="radio" name="q2" value="été" id="q2b"><label for="q2b">Été</label><br>
+<input type="radio" name="q2" value="automne" id="q2c"><label for="q2c">Automne</label><br>
+<input type="radio" name="q2" value="hiver" id="q2d"><label for="q2d">Hiver</label>
+</div>
+
+<!-- Question 3 -->
+<div>
+<p><strong>3. Préfères-tu les parfums légers ou intenses ?</strong></p>
+<input type="radio" name="q3" value="léger" id="q3a"><label for="q3a">Léger</label><br>
+<input type="radio" name="q3" value="intense" id="q3b"><label for="q3b">Intense</label>
+</div>
+
+<!-- Question 4 -->
+<div>
+<p><strong>4. À quelle fréquence te parfumes-tu ?</strong></p>
+<input type="radio" name="q4" value="tous_les_jours" id="q4a"><label for="q4a">Tous les jours</label><br>
+<input type="radio" name="q4" value="souvent" id="q4b"><label for="q4b">Souvent selon l'humeur</label><br>
+<input type="radio" name="q4" value="occasionnel" id="q4c"><label for="q4c">Occasionnellement</label><br>
+<input type="radio" name="q4" value="rarement" id="q4d"><label for="q4d">Rarement</label>
+</div>
+
+<!-- Question 5 -->
+<div>
+<p><strong>5. Comment décrirais-tu ton caractère ? (choisis 2 max)</strong></p>
+<input type="checkbox" name="q5" value="calme" id="q5a"><label for="q5a">Calme & posé·e</label><br>
+<input type="checkbox" name="q5" value="passionne" id="q5b"><label for="q5b">Passionné·e</label><br>
+<input type="checkbox" name="q5" value="mystere" id="q5c"><label for="q5c">Mystérieux·se</label><br>
+<input type="checkbox" name="q5" value="doux" id="q5d"><label for="q5d">Solidaire & doux·ce</label><br>
+<input type="checkbox" name="q5" value="audacieux" id="q5e"><label for="q5e">Audacieux·se</label><br>
+<input type="checkbox" name="q5" value="independant" id="q5f"><label for="q5f">Indépendant·e</label>
+</div>
+
+<!-- Question 6 -->
+<div>
+<p><strong>6. Ton univers te parle le plus quand il est…</strong></p>
+<input type="radio" name="q6" value="nature" id="q6a"><label for="q6a">Nature / air libre</label><br>
+<input type="radio" name="q6" value="cocooning" id="q6b"><label for="q6b">Cocooning / chaleur</label><br>
+<input type="radio" name="q6" value="nuit" id="q6c"><label for="q6c">Nuit / profondeur</label><br>
+<input type="radio" name="q6" value="energie" id="q6d"><label for="q6d">Énergie / lumière</label><br>
+<input type="radio" name="q6" value="creatif" id="q6e"><label for="q6e">Créatif / atypique</label>
+</div>
+
+<!-- Question 7 -->
+<div>
+<p><strong>7. Plutôt parfum dit…</strong></p>
+<input type="radio" name="q7" value="feminin" id="q7a"><label for="q7a">Féminin</label><br>
+<input type="radio" name="q7" value="masculin" id="q7b"><label for="q7b">Masculin</label><br>
+<input type="radio" name="q7" value="mixte" id="q7c"><label for="q7c">Mixte / sans étiquette</label><br>
+<input type="radio" name="q7" value="jour" id="q7d">Ça dépend des jours<br>
+<input type="radio" name="q7" value="peu_importe" id="q7e">Je m’en fiche complètement
+</div>
+
+<!-- Question 8 -->
+<div>
+<p><strong>8. Le parfum idéal pour toi, c’est avant tout…</strong></p>
+<input type="radio" name="q8" value="signature" id="q8a"><label for="q8a">Une signature</label><br>
+<input type="radio" name="q8" value="extension" id="q8b"><label for="q8b">Une extension de ma personnalité</label><br>
+<input type="radio" name="q8" value="plaisir" id="q8c"><label for="q8c">Un plaisir personnel</label><br>
+<input type="radio" name="q8" value="detail" id="q8d"><label for="q8d">Un détail qui change tout</label><br>
+<input type="radio" name="q8" value="decouverte" id="q8e"><label for="q8e">Une découverte</label>
+</div>
 
 <button type="button" onclick="showResult()">Voir mon parfum</button>
 </form>
 
-<p id="result" style="margin-top:30px; font-weight:bold;"></p>
+<p id="result"></p>
 
 <script>
-// Init profils
+// Profils
 const profils = {
 "Frais Libre": 0,
 "Doux Confort": 0,
@@ -29,51 +108,13 @@ const profils = {
 "Créatif·ve Libre": 0
 };
 
-// Fonction pour générer recommandations IA
+// Fonction pour générer 3 parfums recommandés
 function generatePerfums(resultat) {
-// Prompt simplifié pour simuler l'IA (tu pourras remplacer par vraie API)
 const profil = resultat.profilPrincipal;
-const second = resultat.profilsSecondaires.join(", ");
-
-// Ici tu peux remplacer par une vraie API ou modèle IA
-const recommandations = {
-"Frais Libre": [
-{name:"Light Breeze", brand:"Maison Margiela", desc:"Fraîcheur aérienne et vivifiante."},
-{name:"Green Escape", brand:"Byredo", desc:"Une balade dans la nature, légère et relaxante."},
-{name:"Citrus Sky", brand:"Dior", desc:"Zeste de vitalité pour tous les jours."}
-],
-"Doux Confort": [
-{name:"Soft Whisper", brand:"YSL", desc:"Chaleur douce et enveloppante."},
-{name:"Vanilla Dream", brand:"Juliette Has A Gun", desc:"Tendre et réconfortant, parfait pour soi."},
-{name:"Cashmere Touch", brand:"Maison Francis Kurkdjian", desc:"Un cocon olfactif délicat."}
-],
-"Gourmand Sensuel": [
-{name:"Sweet Desire", brand:"Serge Lutens", desc:"Gourmand, intense et passionné."},
-{name:"Amber Nights", brand:"Byredo", desc:"Chaleur et charisme pour marquer les esprits."},
-{name:"Vanilla Spice", brand:"Dior", desc:"Plaisir riche et captivant."}
-],
-"Boisé Caractère": [
-{name:"Forest Heart", brand:"Hermès", desc:"Élégant, profond et affirmé."},
-{name:"Oak & Smoke", brand:"Tom Ford", desc:"Boisé intense et mystérieux."},
-{name:"Cedar Legend", brand:"Maison Margiela", desc:"Force tranquille et naturel."}
-],
-"Intense Mystère": [
-{name:"Night Whisper", brand:"Serge Lutens", desc:"Profond et magnétique, mystérieux."},
-{name:"Encens Sacré", brand:"L’Artisan Parfumeur", desc:"Une aura de mystère et de contraste."},
-{name:"Oriental Shadow", brand:"Byredo", desc:"Intense, envoûtant et singulier."}
-],
-"Créatif·ve Libre": [
-{name:"Unique Twist", brand:"Juliette Has A Gun", desc:"Audacieux, original et atypique."},
-{name:"Metallic Bloom", brand:"Maison Margiela", desc:"Surprenant et hors cadre."},
-{name:"Green Rebel", brand:"Byredo", desc:"Curiosité et expression libre."}
-]
-};
-
-// On renvoie les 3 parfums principaux du profil dominant
 return recommandations[profil];
 }
 
-// Fonction pour calculer le résultat
+// Fonction pour calculer le profil
 function showResult() {
 const q1 = document.querySelector('input[name="q1"]:checked')?.value;
 const q2 = document.querySelector('input[name="q2"]:checked')?.value;
@@ -92,25 +133,64 @@ return;
 // Reset scores
 for(let p in profils) profils[p] = 0;
 
-// SCORING (même logique que le code précédent)
-// [Copier le scoring complet du code 8 questions ici]
+// Scoring simplifié (copier la logique des profils du code précédent)
+if(q1==="floral"){ profils["Doux Confort"]++; profils["Gourmand Sensuel"]++; }
+if(q1==="fruité"){ profils["Gourmand Sensuel"]++; profils["Créatif·ve Libre"]++; }
+if(q1==="boisé"){ profils["Boisé Caractère"]++; profils["Intense Mystère"]++; }
 
-// Trier profils
-const sortedProfils = Object.entries(profils).sort((a,b) => b[1]-a[1]).map(e => e[0]);
+if(q2==="printemps"){ profils["Frais Libre"]++; profils["Créatif·ve Libre"]++; }
+if(q2==="été"){ profils["Frais Libre"]++; profils["Gourmand Sensuel"]++; }
+if(q2==="automne"){ profils["Boisé Caractère"]++; profils["Intense Mystère"]++; }
+if(q2==="hiver"){ profils["Intense Mystère"]++; profils["Doux Confort"]++; }
+
+if(q3==="léger"){ profils["Frais Libre"]++; profils["Doux Confort"]++; }
+if(q3==="intense"){ profils["Gourmand Sensuel"]++; profils["Intense Mystère"]++; }
+
+if(q4==="tous_les_jours"){ profils["Frais Libre"]++; profils["Boisé Caractère"]++; }
+if(q4==="souvent"){ profils["Gourmand Sensuel"]++; profils["Créatif·ve Libre"]++; }
+if(q4==="occasionnel"){ profils["Doux Confort"]++; profils["Frais Libre"]++; }
+if(q4==="rarement"){ profils["Intense Mystère"]++; profils["Créatif·ve Libre"]++; }
+
+q5.forEach(v=>{
+if(v==="calme") profils["Frais Libre"]++;
+if(v==="passionne") profils["Gourmand Sensuel"]++;
+if(v==="mystere") profils["Intense Mystère"]++;
+if(v==="doux") profils["Doux Confort"]++;
+if(v==="audacieux") profils["Créatif·ve Libre"]++;
+if(v==="independant") profils["Boisé Caractère"]++;
+});
+
+if(q6==="nature") profils["Frais Libre"]++;
+if(q6==="cocooning") profils["Doux Confort"]++;
+if(q6==="nuit") profils["Intense Mystère"]++;
+if(q6==="energie") profils["Gourmand Sensuel"]++;
+if(q6==="creatif") profils["Créatif·ve Libre"]++;
+
+if(q7==="feminin") profils["Doux Confort"]++;
+if(q7==="masculin") profils["Boisé Caractère"]++;
+if(["mixte","jour","peu_importe"].includes(q7)) profils["Créatif·ve Libre"]++;
+
+if(q8==="signature") profils["Gourmand Sensuel"]++;
+if(q8==="extension") profils["Frais Libre"]++;
+if(q8==="plaisir") profils["Doux Confort"]++;
+if(q8==="detail") profils["Créatif·ve Libre"]++;
+if(q8==="decouverte") profils["Intense Mystère"]++;
+
+// Trier
+const sortedProfils = Object.entries(profils).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
 const resultat = { profilPrincipal: sortedProfils[0], profilsSecondaires: [sortedProfils[1], sortedProfils[2]] };
 
-// Génération parfums IA
+// Génération des 3 parfums
 const perfums = generatePerfums(resultat);
 
 // Affichage
-let text = `Ton profil principal : ${resultat.profilPrincipal}\n`;
-text += `Profils secondaires : ${resultat.profilsSecondaires.join(", ")}\n\n`;
-text += "Voici 3 parfums qui pourraient te correspondre :\n";
-perfums.forEach((p,i) => {
-text += `${i+1}. ${p.name} (${p.brand}) — ${p.desc}\n`;
-});
+let text = `Profil principal : ${resultat.profilPrincipal}\nProfils secondaires : ${resultat.profilsSecondaires.join(", ")}\n\nVoici 3 parfums qui pourraient te correspondre :\n`;
+perfums.forEach((p,i)=>{ text+=`${i+1}. ${p.name} (${p.brand}) — ${p.desc}\n`; });
 
 document.getElementById("result").textContent = text;
 }
 </script>
 
+</body>
+</html>
+Mise à jour du quiz avec IA intégrée
