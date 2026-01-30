@@ -3,7 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PerfumeMatch - Quiz modulable</title>
+<title>PerfumeMatch - Quiz</title>
+<style>
+body { font-family: Arial, sans-serif; background: linear-gradient(to right,#fdf6f0,#fff8f2); color:#333; margin:0; padding:0 20px;}
+h1 { text-align:center; color:#5a2a27; margin-top:20px; }
+p { text-align:center; font-size:16px; line-height:1.6; }
+form { max-width:700px; margin:20px auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+.question { margin-bottom:25px; }
+.button-answer {
+display:block;
+width:100%;
+margin:8px 0;
+padding:12px;
+font-size:16px;
+border:none;
+border-radius:8px;
+background-color:#f3c6b2;
+cursor:pointer;
+transition: all 0.3s ease;
+}
+.button-answer:hover { background-color:#b84a3b; color:white; transform:scale(1.03);}
+.button-answer.selected { background-color:#d05c4d; color:white;}
+button#submit { margin-top:20px; background-color:#b84a3b; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:8px; cursor:pointer; transition:all 0.3s ease;}
+button#submit:hover { background-color:#d05c4d; transform:scale(1.05);}
+#result { max-width:700px; margin:35px auto; padding:25px; border-radius:12px; opacity:0; transition: opacity 0.8s;}
+.perfume-card {
+display:flex; align-items:center; gap:15px; margin:15px 0; padding:15px 20px;
+border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1);
+transform:translateY(30px); opacity:0; transition: all 0.5s ease, box-shadow 0.3s;
+cursor:pointer;
+}
+.perfume-card.show { transform:translateY(0); opacity:1; }
+.perfume-card:hover { box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-3px) scale(1.02); }
+.perfume-card h3 { margin:0 0 5px 0; font-size:18px; transition: color 0.3s;}
+.perfume-card:hover h3 { color:#b84a3b; }
+.perfume-card p { margin:0; font-size:14px; color:#555; }
+.perfume-emoji { font-size:32px; transition: transform 0.3s; }
+.perfume-card:hover .perfume-emoji { transform: rotate(15deg) scale(1.2); }
 </style>
 </head>
 <body>
@@ -45,12 +81,13 @@ const recommandations = {
 "Créatif·ve Libre":[{emoji:"🎨",name:"Unique Twist",brand:"Juliette Has A Gun",desc:"Audacieux, original et atypique."},{emoji:"✨",name:"Metallic Bloom",brand:"Maison Margiela",desc:"Surprenant et hors cadre."},{emoji:"🌈",name:"Green Rebel",brand:"Byredo",desc:"Curiosité et expression libre."}]
 };
 
-// ======= Génération HTML =======
+// ======= Génération automatique des questions =======
 const form = document.getElementById('quiz-form');
 quizData.forEach(q=>{
 const div = document.createElement('div');
 div.className='question';
 div.dataset.question=q.key;
+
 const p = document.createElement('p');
 p.textContent=q.question;
 div.appendChild(p);
@@ -72,7 +109,7 @@ document.querySelectorAll('.question').forEach(q=>{
 const buttons = q.querySelectorAll('.button-answer');
 buttons.forEach(btn=>{
 btn.addEventListener('click', ()=>{
-if(q.dataset.question==="q5"){ // multi-choix max 2
+if(q.dataset.question==="q5"){ // multi max 2
 btn.classList.toggle('selected');
 const selected = q.querySelectorAll('.button-answer.selected');
 if(selected.length>2) btn.classList.remove('selected');
