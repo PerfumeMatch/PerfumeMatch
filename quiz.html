@@ -3,146 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PerfumeMatch - Quiz</title>
-<style>
-body { font-family: Arial, sans-serif; background: linear-gradient(to right,#fdf6f0,#fff8f2); color:#333; margin:0; padding:0 20px;}
-h1 { text-align:center; color:#5a2a27; margin-top:20px; }
-p { text-align:center; font-size:16px; line-height:1.6; }
-form { max-width:700px; margin:20px auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.1);}
-.question { margin-bottom:25px; }
-.button-answer {
-display:block;
-width:100%;
-margin:8px 0;
-padding:12px;
-font-size:16px;
-border:none;
-border-radius:8px;
-background-color:#f3c6b2;
-cursor:pointer;
-transition: all 0.3s ease;
-}
-.button-answer:hover { background-color:#b84a3b; color:white; transform:scale(1.03);}
-.button-answer.selected { background-color:#d05c4d; color:white;}
-button#submit { margin-top:20px; background-color:#b84a3b; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:8px; cursor:pointer; transition:all 0.3s ease;}
-button#submit:hover { background-color:#d05c4d; transform:scale(1.05);}
-#result { max-width:700px; margin:35px auto; padding:25px; border-radius:12px; opacity:0; transition: opacity 0.8s;}
-.perfume-card {
-display:flex; align-items:center; gap:15px; margin:15px 0; padding:15px 20px;
-border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1);
-transform:translateY(30px); opacity:0; transition: all 0.5s ease, box-shadow 0.3s;
-cursor:pointer;
-}
-.perfume-card.show { transform:translateY(0); opacity:1; }
-.perfume-card:hover { box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-3px) scale(1.02); }
-.perfume-card h3 { margin:0 0 5px 0; font-size:18px; transition: color 0.3s;}
-.perfume-card:hover h3 { color:#b84a3b; }
-.perfume-card p { margin:0; font-size:14px; color:#555; }
-.perfume-emoji { font-size:32px; transition: transform 0.3s; }
-.perfume-card:hover .perfume-emoji { transform: rotate(15deg) scale(1.2); }
-footer { text-align:center; padding:40px 20px; background:#f9f2ef; color:#555; font-size:14px; margin-top:40px;}
-footer a { color:#b84a3b; text-decoration:none; }
-footer a:hover { text-decoration:underline; }
+<title>PerfumeMatch - Quiz modulable</title>
 </style>
 </head>
 <body>
 
 <h1>Matching PerfumeMatch</h1>
-<p>Réponds à ces questions pour découvrir ton parfum parfait :</p>
+<p>Réponds aux questions pour découvrir ton parfum parfait :</p>
 
 <form id="quiz-form">
-<!-- Questions 1 à 8 -->
-<div class="question" data-question="q1">
-<p>1. Quelle ambiance te correspond le plus ?</p>
-<button type="button" class="button-answer" data-value="floral">Florale</button>
-<button type="button" class="button-answer" data-value="fruité">Fruité</button>
-<button type="button" class="button-answer" data-value="boisé">Boisé</button>
-</div>
-
-<div class="question" data-question="q2">
-<p>2. Quelle saison préfères-tu ?</p>
-<button type="button" class="button-answer" data-value="printemps">Printemps</button>
-<button type="button" class="button-answer" data-value="été">Été</button>
-<button type="button" class="button-answer" data-value="automne">Automne</button>
-<button type="button" class="button-answer" data-value="hiver">Hiver</button>
-</div>
-
-<div class="question" data-question="q3">
-<p>3. Préfères-tu les parfums légers ou intenses ?</p>
-<button type="button" class="button-answer" data-value="léger">Léger</button>
-<button type="button" class="button-answer" data-value="intense">Intense</button>
-</div>
-
-<div class="question" data-question="q4">
-<p>4. À quelle fréquence te parfumes-tu ?</p>
-<button type="button" class="button-answer" data-value="tous_les_jours">Tous les jours</button>
-<button type="button" class="button-answer" data-value="souvent">Souvent</button>
-<button type="button" class="button-answer" data-value="occasionnel">Occasionnellement</button>
-<button type="button" class="button-answer" data-value="rarement">Rarement</button>
-</div>
-
-<div class="question" data-question="q5">
-<p>5. Comment décrirais-tu ton caractère ? (choisis 2 max)</p>
-<button type="button" class="button-answer" data-value="calme">Calme</button>
-<button type="button" class="button-answer" data-value="passionne">Passionné·e</button>
-<button type="button" class="button-answer" data-value="mystere">Mystérieux·se</button>
-<button type="button" class="button-answer" data-value="doux">Doux·ce</button>
-<button type="button" class="button-answer" data-value="audacieux">Audacieux·se</button>
-<button type="button" class="button-answer" data-value="independant">Indépendant·e</button>
-</div>
-
-<div class="question" data-question="q6">
-<p>6. Ton univers te parle le plus quand il est…</p>
-<button type="button" class="button-answer" data-value="nature">Nature / air libre</button>
-<button type="button" class="button-answer" data-value="cocooning">Cocooning</button>
-<button type="button" class="button-answer" data-value="nuit">Nuit</button>
-<button type="button" class="button-answer" data-value="energie">Énergie</button>
-<button type="button" class="button-answer" data-value="creatif">Créatif</button>
-</div>
-
-<div class="question" data-question="q7">
-<p>7. Plutôt parfum dit…</p>
-<button type="button" class="button-answer" data-value="feminin">Féminin</button>
-<button type="button" class="button-answer" data-value="masculin">Masculin</button>
-<button type="button" class="button-answer" data-value="mixte">Mixte</button>
-<button type="button" class="button-answer" data-value="jour">Ça dépend</button>
-<button type="button" class="button-answer" data-value="peu_importe">Peu importe</button>
-</div>
-
-<div class="question" data-question="q8">
-<p>8. Le parfum idéal pour toi, c’est avant tout…</p>
-<button type="button" class="button-answer" data-value="signature">Une signature</button>
-<button type="button" class="button-answer" data-value="extension">Extension de ma personnalité</button>
-<button type="button" class="button-answer" data-value="plaisir">Un plaisir personnel</button>
-<button type="button" class="button-answer" data-value="detail">Un détail important</button>
-<button type="button" class="button-answer" data-value="decouverte">Une découverte</button>
-</div>
-
 <button type="button" id="submit">Voir mon parfum</button>
 </form>
 
 <div id="result"></div>
 
-<footer>
-&copy; 2026 PerfumeMatch | <a href="index.html">Accueil</a> | Tous droits réservés
-</footer>
-
 <script>
+// ======= Données du quiz =======
+const quizData = [
+{question:"Quelle ambiance te correspond le plus ?", key:"q1", type:"single", options:["Florale","Fruité","Boisé"]},
+{question:"Quelle saison préfères-tu ?", key:"q2", type:"single", options:["Printemps","Été","Automne","Hiver"]},
+{question:"Préfères-tu les parfums légers ou intenses ?", key:"q3", type:"single", options:["Léger","Intense"]},
+{question:"À quelle fréquence te parfumes-tu ?", key:"q4", type:"single", options:["Tous les jours","Souvent","Occasionnellement","Rarement"]},
+{question:"Comment décrirais-tu ton caractère ? (max 2)", key:"q5", type:"multi", options:["Calme","Passionné·e","Mystérieux·se","Doux·ce","Audacieux·se","Indépendant·e"]},
+{question:"Ton univers te parle le plus quand il est…", key:"q6", type:"single", options:["Nature / air libre","Cocooning","Nuit","Énergie","Créatif"]},
+{question:"Plutôt parfum dit…", key:"q7", type:"single", options:["Féminin","Masculin","Mixte","Ça dépend","Peu importe"]},
+{question:"Le parfum idéal pour toi, c’est avant tout…", key:"q8", type:"single", options:["Une signature","Extension de ma personnalité","Un plaisir personnel","Un détail important","Une découverte"]}
+];
+
+// Profils et couleurs
 const couleurs = {
-"Frais Libre":"#d0f0fd",
-"Doux Confort":"#fde3e1",
-"Gourmand Sensuel":"#fff0d1",
-"Boisé Caractère":"#e2f1d1",
-"Intense Mystère":"#f0e0fd",
-"Créatif·ve Libre":"#fff7d1"
+"Frais Libre":"#d0f0fd","Doux Confort":"#fde3e1","Gourmand Sensuel":"#fff0d1",
+"Boisé Caractère":"#e2f1d1","Intense Mystère":"#f0e0fd","Créatif·ve Libre":"#fff7d1"
 };
 
-// Gestion sélection boutons
+const recommandations = {
+"Frais Libre":[{emoji:"🍃",name:"Light Breeze",brand:"Maison Margiela",desc:"Fraîcheur aérienne et vivifiante."},{emoji:"🌿",name:"Green Escape",brand:"Byredo",desc:"Balade nature, légère et relaxante."},{emoji:"🍋",name:"Citrus Sky",brand:"Dior",desc:"Zeste de vitalité pour tous les jours."}],
+"Doux Confort":[{emoji:"🛋️",name:"Soft Whisper",brand:"YSL",desc:"Chaleur douce et enveloppante."},{emoji:"🍦",name:"Vanilla Dream",brand:"Juliette Has A Gun",desc:"Tendre et réconfortant."},{emoji:"🧣",name:"Cashmere Touch",brand:"Maison Francis Kurkdjian",desc:"Cocon olfactif délicat."}],
+"Gourmand Sensuel":[{emoji:"🍫",name:"Sweet Desire",brand:"Serge Lutens",desc:"Gourmand, intense et passionné."},{emoji:"🔥",name:"Amber Nights",brand:"Byredo",desc:"Chaleur et charisme."},{emoji:"🍪",name:"Vanilla Spice",brand:"Dior",desc:"Plaisir riche et captivant."}],
+"Boisé Caractère":[{emoji:"🌲",name:"Forest Heart",brand:"Hermès",desc:"Élégant, profond et affirmé."},{emoji:"🪵",name:"Oak & Smoke",brand:"Tom Ford",desc:"Boisé intense et mystérieux."},{emoji:"🪓",name:"Cedar Legend",brand:"Maison Margiela",desc:"Force tranquille et naturel."}],
+"Intense Mystère":[{emoji:"🌙",name:"Night Whisper",brand:"Serge Lutens",desc:"Profond et magnétique, mystérieux."},{emoji:"🕯️",name:"Encens Sacré",brand:"L’Artisan Parfumeur",desc:"Aura de mystère."},{emoji:"🖤",name:"Oriental Shadow",brand:"Byredo",desc:"Intense et envoûtant."}],
+"Créatif·ve Libre":[{emoji:"🎨",name:"Unique Twist",brand:"Juliette Has A Gun",desc:"Audacieux, original et atypique."},{emoji:"✨",name:"Metallic Bloom",brand:"Maison Margiela",desc:"Surprenant et hors cadre."},{emoji:"🌈",name:"Green Rebel",brand:"Byredo",desc:"Curiosité et expression libre."}]
+};
+
+// ======= Génération HTML =======
+const form = document.getElementById('quiz-form');
+quizData.forEach(q=>{
+const div = document.createElement('div');
+div.className='question';
+div.dataset.question=q.key;
+const p = document.createElement('p');
+p.textContent=q.question;
+div.appendChild(p);
+
+q.options.forEach(opt=>{
+const btn = document.createElement('button');
+btn.type='button';
+btn.className='button-answer';
+btn.dataset.value=opt;
+btn.textContent=opt;
+div.appendChild(btn);
+});
+
+form.insertBefore(div, document.getElementById('submit'));
+});
+
+// ======= Gestion sélection boutons =======
 document.querySelectorAll('.question').forEach(q=>{
 const buttons = q.querySelectorAll('.button-answer');
 buttons.forEach(btn=>{
 btn.addEventListener('click', ()=>{
-if(q.dataset.question==="q5"){ // multi-choix
+if(q.dataset.question==="q5"){ // multi-choix max 2
 btn.classList.toggle('selected');
 const selected = q.querySelectorAll('.button-answer.selected');
 if(selected.length>2) btn.classList.remove('selected');
@@ -154,73 +84,68 @@ btn.classList.add('selected');
 });
 });
 
+// ======= Calcul profil et affichage =======
 document.getElementById('submit').addEventListener('click', ()=>{
 const answers = {};
-document.querySelectorAll('.question').forEach(q=>{
-const selected = q.querySelectorAll('.button-answer.selected');
-if(selected.length===0) { alert("Réponds à toutes les questions !"); return; }
-answers[q.dataset.question] = Array.from(selected).map(s=>s.dataset.value);
-});
+for(const q of quizData){
+const sel = q.type==="multi" ?
+Array.from(document.querySelector(`[data-question="${q.key}"]`).querySelectorAll('.button-answer.selected')).map(b=>b.dataset.value)
+: Array.from(document.querySelector(`[data-question="${q.key}"]`).querySelectorAll('.button-answer.selected')).map(b=>b.dataset.value)[0];
 
-// Scoring profil
+if(!sel || (Array.isArray(sel) && sel.length===0)){ alert("Réponds à toutes les questions !"); return; }
+answers[q.key] = sel;
+}
+
+// ======= Scoring =======
 const profils = {"Frais Libre":0,"Doux Confort":0,"Gourmand Sensuel":0,"Boisé Caractère":0,"Intense Mystère":0,"Créatif·ve Libre":0};
 
 function addScore(cond, keys){ if(cond) keys.forEach(k=>profils[k]++); }
 
 // Q1
-addScore(answers.q1.includes("floral"), ["Doux Confort","Gourmand Sensuel"]);
-addScore(answers.q1.includes("fruité"), ["Gourmand Sensuel","Créatif·ve Libre"]);
-addScore(answers.q1.includes("boisé"), ["Boisé Caractère","Intense Mystère"]);
+addScore(answers.q1==="Florale", ["Doux Confort","Gourmand Sensuel"]);
+addScore(answers.q1==="Fruité", ["Gourmand Sensuel","Créatif·ve Libre"]);
+addScore(answers.q1==="Boisé", ["Boisé Caractère","Intense Mystère"]);
 // Q2
-addScore(answers.q2.includes("printemps"), ["Frais Libre","Créatif·ve Libre"]);
-addScore(answers.q2.includes("été"), ["Frais Libre","Gourmand Sensuel"]);
-addScore(answers.q2.includes("automne"), ["Boisé Caractère","Intense Mystère"]);
-addScore(answers.q2.includes("hiver"), ["Intense Mystère","Doux Confort"]);
+addScore(answers.q2==="Printemps", ["Frais Libre","Créatif·ve Libre"]);
+addScore(answers.q2==="Été", ["Frais Libre","Gourmand Sensuel"]);
+addScore(answers.q2==="Automne", ["Boisé Caractère","Intense Mystère"]);
+addScore(answers.q2==="Hiver", ["Intense Mystère","Doux Confort"]);
 // Q3
-addScore(answers.q3.includes("léger"), ["Frais Libre","Doux Confort"]);
-addScore(answers.q3.includes("intense"), ["Gourmand Sensuel","Intense Mystère"]);
+addScore(answers.q3==="Léger", ["Frais Libre","Doux Confort"]);
+addScore(answers.q3==="Intense", ["Gourmand Sensuel","Intense Mystère"]);
 // Q4
-addScore(answers.q4.includes("tous_les_jours"), ["Frais Libre","Boisé Caractère"]);
-addScore(answers.q4.includes("souvent"), ["Gourmand Sensuel","Créatif·ve Libre"]);
-addScore(answers.q4.includes("occasionnel"), ["Doux Confort","Frais Libre"]);
-addScore(answers.q4.includes("rarement"), ["Intense Mystère","Créatif·ve Libre"]);
+addScore(answers.q4==="Tous les jours", ["Frais Libre","Boisé Caractère"]);
+addScore(answers.q4==="Souvent", ["Gourmand Sensuel","Créatif·ve Libre"]);
+addScore(answers.q4==="Occasionnellement", ["Doux Confort","Frais Libre"]);
+addScore(answers.q4==="Rarement", ["Intense Mystère","Créatif·ve Libre"]);
 // Q5
 answers.q5.forEach(v=>{
-if(v==="calme") profils["Frais Libre"]++;
-if(v==="passionne") profils["Gourmand Sensuel"]++;
-if(v==="mystere") profils["Intense Mystère"]++;
-if(v==="doux") profils["Doux Confort"]++;
-if(v==="audacieux") profils["Créatif·ve Libre"]++;
-if(v==="independant") profils["Boisé Caractère"]++;
+if(v==="Calme") profils["Frais Libre"]++;
+if(v==="Passionné·e") profils["Gourmand Sensuel"]++;
+if(v==="Mystérieux·se") profils["Intense Mystère"]++;
+if(v==="Doux·ce") profils["Doux Confort"]++;
+if(v==="Audacieux·se") profils["Créatif·ve Libre"]++;
+if(v==="Indépendant·e") profils["Boisé Caractère"]++;
 });
 // Q6
-addScore(answers.q6.includes("nature"), ["Frais Libre"]);
-addScore(answers.q6.includes("cocooning"), ["Doux Confort"]);
-addScore(answers.q6.includes("nuit"), ["Intense Mystère"]);
-addScore(answers.q6.includes("energie"), ["Gourmand Sensuel"]);
-addScore(answers.q6.includes("creatif"), ["Créatif·ve Libre"]);
+addScore(answers.q6==="Nature / air libre", ["Frais Libre"]);
+addScore(answers.q6==="Cocooning", ["Doux Confort"]);
+addScore(answers.q6==="Nuit", ["Intense Mystère"]);
+addScore(answers.q6==="Énergie", ["Gourmand Sensuel"]);
+addScore(answers.q6==="Créatif", ["Créatif·ve Libre"]);
 // Q7
-addScore(answers.q7.includes("feminin"), ["Doux Confort"]);
-addScore(answers.q7.includes("masculin"), ["Boisé Caractère"]);
-if(["mixte","jour","peu_importe"].some(v=>answers.q7.includes(v))) profils["Créatif·ve Libre"]++;
+addScore(answers.q7==="Féminin", ["Doux Confort"]);
+addScore(answers.q7==="Masculin", ["Boisé Caractère"]);
+if(["Mixte","Ça dépend","Peu importe"].includes(answers.q7)) profils["Créatif·ve Libre"]++;
 // Q8
-addScore(answers.q8.includes("signature"), ["Gourmand Sensuel"]);
-addScore(answers.q8.includes("extension"), ["Frais Libre"]);
-addScore(answers.q8.includes("plaisir"), ["Doux Confort"]);
-addScore(answers.q8.includes("detail"), ["Créatif·ve Libre"]);
-addScore(answers.q8.includes("decouverte"), ["Intense Mystère"]);
+addScore(answers.q8==="Une signature", ["Gourmand Sensuel"]);
+addScore(answers.q8==="Extension de ma personnalité", ["Frais Libre"]);
+addScore(answers.q8==="Un plaisir personnel", ["Doux Confort"]);
+addScore(answers.q8==="Un détail important", ["Créatif·ve Libre"]);
+addScore(answers.q8==="Une découverte", ["Intense Mystère"]);
 
 const sorted = Object.entries(profils).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
 const principal = sorted[0];
-
-const recommandations = {
-"Frais Libre":[{emoji:"🍃",name:"Light Breeze",brand:"Maison Margiela",desc:"Fraîcheur aérienne et vivifiante."},{emoji:"🌿",name:"Green Escape",brand:"Byredo",desc:"Balade nature, légère et relaxante."},{emoji:"🍋",name:"Citrus Sky",brand:"Dior",desc:"Zeste de vitalité pour tous les jours."}],
-"Doux Confort":[{emoji:"🛋️",name:"Soft Whisper",brand:"YSL",desc:"Chaleur douce et enveloppante."},{emoji:"🍦",name:"Vanilla Dream",brand:"Juliette Has A Gun",desc:"Tendre et réconfortant."},{emoji:"🧣",name:"Cashmere Touch",brand:"Maison Francis Kurkdjian",desc:"Cocon olfactif délicat."}],
-"Gourmand Sensuel":[{emoji:"🍫",name:"Sweet Desire",brand:"Serge Lutens",desc:"Gourmand, intense et passionné."},{emoji:"🔥",name:"Amber Nights",brand:"Byredo",desc:"Chaleur et charisme."},{emoji:"🍪",name:"Vanilla Spice",brand:"Dior",desc:"Plaisir riche et captivant."}],
-"Boisé Caractère":[{emoji:"🌲",name:"Forest Heart",brand:"Hermès",desc:"Élégant, profond et affirmé."},{emoji:"🪵",name:"Oak & Smoke",brand:"Tom Ford",desc:"Boisé intense et mystérieux."},{emoji:"🪓",name:"Cedar Legend",brand:"Maison Margiela",desc:"Force tranquille et naturel."}],
-"Intense Mystère":[{emoji:"🌙",name:"Night Whisper",brand:"Serge Lutens",desc:"Profond et magnétique, mystérieux."},{emoji:"🕯️",name:"Encens Sacré",brand:"L’Artisan Parfumeur",desc:"Aura de mystère."},{emoji:"🖤",name:"Oriental Shadow",brand:"Byredo",desc:"Intense et envoûtant."}],
-"Créatif·ve Libre":[{emoji:"🎨",name:"Unique Twist",brand:"Juliette Has A Gun",desc:"Audacieux, original et atypique."},{emoji:"✨",name:"Metallic Bloom",brand:"Maison Margiela",desc:"Surprenant et hors cadre."},{emoji:"🌈",name:"Green Rebel",brand:"Byredo",desc:"Curiosité et expression libre."}]
-};
 
 const resultDiv = document.getElementById("result");
 resultDiv.innerHTML = "";
