@@ -5,145 +5,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PerfumeMatch - Quiz</title>
 <style>
-body { font-family: Arial, sans-serif; background: linear-gradient(to right,#fdf6f0,#fff8f2); color:#333; margin:0; padding:0 20px; scroll-behavior: smooth;}
-h1 { text-align:center; color:#5a2a27; margin-top:20px; font-size:2.4em; letter-spacing:1px;}
+body { font-family: Arial, sans-serif; background: linear-gradient(to right,#fdf6f0,#fff8f2); color:#333; margin:0; padding:0 20px;}
+h1 { text-align:center; color:#5a2a27; margin-top:20px; }
 p { text-align:center; font-size:16px; line-height:1.6; }
-
 form { max-width:700px; margin:20px auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.1);}
 .question { margin-bottom:25px; }
-label { display:block; margin-bottom:8px; cursor:pointer; }
-input[type="radio"], input[type="checkbox"] { margin-right:10px; }
-
-button { display:block; margin:25px auto; padding:12px 30px; font-size:17px; background-color:#b84a3b; color:white; border:none; border-radius:6px; cursor:pointer; transition: all 0.3s ease;}
-button:hover { background-color:#d05c4d; transform:scale(1.05);}
-button:active { transform:scale(0.97); }
-
-#result { max-width:700px; margin:35px auto; padding:25px; border-radius:12px; opacity:0; transition: opacity 0.8s; }
-
-.perfume-card {
-display:flex; align-items:center; gap:15px; margin:15px 0; padding:15px 20px;
-border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1);
-transform:translateY(30px); opacity:0; transition: all 0.5s ease, box-shadow 0.3s;
+.button-answer {
+display:block;
+width:100%;
+margin:8px 0;
+padding:12px;
+font-size:16px;
+border:none;
+border-radius:8px;
+background-color:#f3c6b2;
 cursor:pointer;
+transition: all 0.3s ease;
 }
-.perfume-card.show { transform:translateY(0); opacity:1; }
-.perfume-card:hover { box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-3px) scale(1.02); }
-.perfume-card h3 { margin:0 0 5px 0; font-size:18px; transition: color 0.3s;}
-.perfume-card:hover h3 { color:#b84a3b; }
-.perfume-card p { margin:0; font-size:14px; color:#555; }
-.perfume-emoji { font-size:32px; transition: transform 0.3s; }
-.perfume-card:hover .perfume-emoji { transform: rotate(15deg) scale(1.2); }
-
-footer { text-align:center; padding:40px 20px; background:#f9f2ef; color:#555; font-size:14px; margin-top:40px;}
-footer a { color:#b84a3b; text-decoration:none; }
-footer a:hover { text-decoration:underline; }
+.button-answer:hover { background-color:#b84a3b; color:white; transform:scale(1.03);}
+.button-answer.selected { background-color:#d05c4d; color:white;}
+button#submit { margin-top:20px; background-color:#b84a3b; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:8px; cursor:pointer; transition:all 0.3s ease;}
+button#submit:hover { background-color:#d05c4d; transform:scale(1.05);}
+#result { max-width:700px; margin:35px auto; padding:25px; border-radius:12px; opacity:0; transition: opacity 0.8s;}
 </style>
 </head>
 <body>
 
 <h1>Matching PerfumeMatch</h1>
 <p>Réponds à ces questions pour découvrir ton parfum parfait :</p>
-label>
-label>
-label>
-<footer>
-&copy; 2026 PerfumeMatch | <a href="index.html">Accueil</a> | Tous droits réservés
-</footer>
+
+<form id="quiz-form">
+<div class="question" data-question="q1">
+<p>1. Quelle ambiance te correspond le plus ?</p>
+<button type="button" class="button-answer" data-value="floral">Florale</button>
+<button type="button" class="button-answer" data-value="fruité">Fruité</button>
+<button type="button" class="button-answer" data-value="boisé">Boisé</button>
+</div>
+
+<div class="question" data-question="q2">
+<p>2. Quelle saison préfères-tu ?</p>
+<button type="button" class="button-answer" data-value="printemps">Printemps</button>
+<button type="button" class="button-answer" data-value="été">Été</button>
+<button type="button" class="button-answer" data-value="automne">Automne</button>
+<button type="button" class="button-answer" data-value="hiver">Hiver</button>
+</div>
+
+<!-- Tu peux ajouter les autres questions de la même manière -->
+
+<button type="button" id="submit">Voir mon parfum</button>
+</form>
+
+<div id="result"></div>
 
 <script>
-const couleurs = {
-"Frais Libre":"#d0f0fd",
-"Doux Confort":"#fde3e1",
-"Gourmand Sensuel":"#fff0d1",
-"Boisé Caractère":"#e2f1d1",
-"Intense Mystère":"#f0e0fd",
-"Créatif·ve Libre":"#fff7d1"
-};
-
-function showResult() {
-const q1 = document.querySelector('input[name="q1"]:checked')?.value;
-const q2 = document.querySelector('input[name="q2"]:checked')?.value;
-const q3 = document.querySelector('input[name="q3"]:checked')?.value;
-const q4 = document.querySelector('input[name="q4"]:checked')?.value;
-const q5 = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(i=>i.value);
-const q6 = document.querySelector('input[name="q6"]:checked')?.value;
-const q7 = document.querySelector('input[name="q7"]:checked')?.value;
-const q8 = document.querySelector('input[name="q8"]:checked')?.value;
-
-if(!q1||!q2||!q3||!q4||!q6||!q7||!q8||q5.length===0){ alert("Réponds à toutes les questions !"); return;}
-
-const profils = {
-"Frais Libre":0,"Doux Confort":0,"Gourmand Sensuel":0,
-"Boisé Caractère":0,"Intense Mystère":0,"Créatif·ve Libre":0
-};
-
-function addScore(cond, keys){ if(cond) keys.forEach(k=>profils[k]++); }
-addScore(q1==="floral", ["Doux Confort","Gourmand Sensuel"]);
-addScore(q1==="fruité", ["Gourmand Sensuel","Créatif·ve Libre"]);
-addScore(q1==="boisé", ["Boisé Caractère","Intense Mystère"]);
-addScore(q2==="printemps", ["Frais Libre","Créatif·ve Libre"]);
-addScore(q2==="été", ["Frais Libre","Gourmand Sensuel"]);
-addScore(q2==="automne", ["Boisé Caractère","Intense Mystère"]);
-addScore(q2==="hiver", ["Intense Mystère","Doux Confort"]);
-addScore(q3==="léger", ["Frais Libre","Doux Confort"]);
-addScore(q3==="intense", ["Gourmand Sensuel","Intense Mystère"]);
-addScore(q4==="tous_les_jours", ["Frais Libre","Boisé Caractère"]);
-addScore(q4==="souvent", ["Gourmand Sensuel","Créatif·ve Libre"]);
-addScore(q4==="occasionnel", ["Doux Confort","Frais Libre"]);
-addScore(q4==="rarement", ["Intense Mystère","Créatif·ve Libre"]);
-q5.forEach(v=>{
-if(v==="calme") profils["Frais Libre"]++;
-if(v==="passionne") profils["Gourmand Sensuel"]++;
-if(v==="mystere") profils["Intense Mystère"]++;
-if(v==="doux") profils["Doux Confort"]++;
-if(v==="audacieux") profils["Créatif·ve Libre"]++;
-if(v==="independant") profils["Boisé Caractère"]++;
+// Gestion sélection des boutons
+document.querySelectorAll('.question').forEach(q=>{
+const buttons = q.querySelectorAll('.button-answer');
+buttons.forEach(btn=>{
+btn.addEventListener('click', ()=>{
+buttons.forEach(b=>b.classList.remove('selected'));
+btn.classList.add('selected');
 });
-addScore(q6==="nature", ["Frais Libre"]);
-addScore(q6==="cocooning", ["Doux Confort"]);
-addScore(q6==="nuit", ["Intense Mystère"]);
-addScore(q6==="energie", ["Gourmand Sensuel"]);
-addScore(q6==="creatif", ["Créatif·ve Libre"]);
-addScore(q7==="feminin", ["Doux Confort"]);
-addScore(q7==="masculin", ["Boisé Caractère"]);
-if(["mixte","jour","peu_importe"].includes(q7)) profils["Créatif·ve Libre"]++;
-addScore(q8==="signature", ["Gourmand Sensuel"]);
-addScore(q8==="extension", ["Frais Libre"]);
-addScore(q8==="plaisir", ["Doux Confort"]);
-addScore(q8==="detail", ["Créatif·ve Libre"]);
-addScore(q8==="decouverte", ["Intense Mystère"]);
-
-const sorted = Object.entries(profils).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
-const principal = sorted[0];
-
-const recommandations = {
-"Frais Libre":[{emoji:"🍃",name:"Light Breeze",brand:"Maison Margiela",desc:"Fraîcheur aérienne et vivifiante."},{emoji:"🌿",name:"Green Escape",brand:"Byredo",desc:"Balade nature, légère et relaxante."},{emoji:"🍋",name:"Citrus Sky",brand:"Dior",desc:"Zeste de vitalité pour tous les jours."}],
-"Doux Confort":[{emoji:"🛋️",name:"Soft Whisper",brand:"YSL",desc:"Chaleur douce et enveloppante."},{emoji:"🍦",name:"Vanilla Dream",brand:"Juliette Has A Gun",desc:"Tendre et réconfortant."},{emoji:"🧣",name:"Cashmere Touch",brand:"Maison Francis Kurkdjian",desc:"Cocon olfactif délicat."}],
-"Gourmand Sensuel":[{emoji:"🍫",name:"Sweet Desire",brand:"Serge Lutens",desc:"Gourmand, intense et passionné."},{emoji:"🔥",name:"Amber Nights",brand:"Byredo",desc:"Chaleur et charisme."},{emoji:"🍪",name:"Vanilla Spice",brand:"Dior",desc:"Plaisir riche et captivant."}],
-"Boisé Caractère":[{emoji:"🌲",name:"Forest Heart",brand:"Hermès",desc:"Élégant, profond et affirmé."},{emoji:"🪵",name:"Oak & Smoke",brand:"Tom Ford",desc:"Boisé intense et mystérieux."},{emoji:"🪓",name:"Cedar Legend",brand:"Maison Margiela",desc:"Force tranquille et naturel."}],
-"Intense Mystère":[{emoji:"🌙",name:"Night Whisper",brand:"Serge Lutens",desc:"Profond et magnétique, mystérieux."},{emoji:"🕯️",name:"Encens Sacré",brand:"L’Artisan Parfumeur",desc:"Aura de mystère."},{emoji:"🖤",name:"Oriental Shadow",brand:"Byredo",desc:"Intense et envoûtant."}],
-"Créatif·ve Libre":[{emoji:"🎨",name:"Unique Twist",brand:"Juliette Has A Gun",desc:"Audacieux, original et atypique."},{emoji:"✨",name:"Metallic Bloom",brand:"Maison Margiela",desc:"Surprenant et hors cadre."},{emoji:"🌈",name:"Green Rebel",brand:"Byredo",desc:"Curiosité et expression libre."}]
-};
-
-const resultDiv = document.getElementById("result");
-resultDiv.innerHTML = ""; // nettoyer avant affichage
-resultDiv.innerHTML = `<h2>Profil principal : ${principal}</h2><h3>Parfums recommandés :</h3>`;
-
-recommandations[principal].forEach((p,i)=>{
-const card = document.createElement("div");
-card.className="perfume-card";
-card.style.backgroundColor = couleurs[principal];
-card.innerHTML=`<span class="perfume-emoji">${p.emoji}</span>
-<div>
-<h3>${p.name} (${p.brand})</h3>
-<p>${p.desc}</p>
-</div>`;
-setTimeout(()=>card.classList.add("show"), i*200);
-resultDiv.appendChild(card);
+});
 });
 
-resultDiv.style.opacity="1";
-}
+// Pour récupérer les réponses
+document.getElementById('submit').addEventListener('click', ()=>{
+const answers = {};
+document.querySelectorAll('.question').forEach(q=>{
+const sel = q.querySelector('.button-answer.selected');
+if(sel) answers[q.dataset.question] = sel.dataset.value;
+});
+console.log('Réponses:', answers);
+alert('Les réponses ont été enregistrées ! (Check console pour voir)');
+});
 </script>
 
 </body>
