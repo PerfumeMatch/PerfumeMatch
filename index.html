@@ -2,64 +2,97 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>PerfumeMatch</title>
-<style>h2 {
-color: #8c4b2e; /* une couleur qui va avec le thème parfum */
-font-size: 24px;
-margin-bottom: 30px;
-}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PerfumeMatch - Accueil</title>
+<style>
+/* Reset et style général */
+body, html { margin:0; padding:0; font-family: Arial, sans-serif; }
 body {
-font-family: Arial, sans-serif;
-background-color: #fdf6f0;
-color: #333333;
-text-align: center;
-padding: 50px;
+background: linear-gradient(to right, #fdf6f0, #fff8f2);
+color: #333;
+scroll-behavior: smooth;
 }
 
-h1 {
-color: #b85c38;
-font-size: 48px;
-margin-bottom: 20px;
+header {
+text-align:center;
+padding:60px 20px 40px 20px;
+background: linear-gradient(to right, #fdf6f0, #fcefe8);
+}
+header h1 {
+font-size:3em;
+color:#5a2a27;
+margin:0;
+}
+header p {
+font-size:1.2em;
+margin-top:10px;
 }
 
-p {
-font-size: 18px;
-line-height: 1.6;
-max-width: 600px;
-margin: 10px auto;
+.main-section {
+text-align:center;
+padding:60px 20px;
 }
+.main-section h2 { font-size:2em; margin-bottom:20px; color:#b84a3b; }
+.main-section p { font-size:1.1em; line-height:1.6; max-width:700px; margin:0 auto 30px auto; }
+.btn-start {
+display:inline-block;
+padding:15px 35px;
+font-size:18px;
+color:white;
+background-color:#b84a3b;
+border:none;
+border-radius:8px;
+cursor:pointer;
+transition: all 0.3s ease;
+text-decoration:none;
+}
+.btn-start:hover { background-color:#d05c4d; transform:scale(1.05); }
 
-#start-button {
-background-color: #b85c38;
-color: white;
-border: none;
-padding: 15px 30px;
-font-size: 18px;
-border-radius: 8px;
-cursor: pointer;
-margin-top: 30px;
-transition: background-color 0.3s;
+.how-it-works {
+max-width:900px;
+margin:60px auto;
+padding:0 20px;
+text-align:left;
 }
+.how-it-works h3 { color:#5a2a27; margin-bottom:15px; }
+.how-it-works ul { list-style-type: disc; margin-left:20px; line-height:1.6; }
 
-#start-button:hover {
-background-color: #a04e2f;
+footer {
+text-align:center;
+padding:40px 20px;
+background:#f9f2ef;
+color:#555;
+font-size:14px;
 }
+footer a { color:#b84a3b; text-decoration:none; }
+footer a:hover { text-decoration:underline; }
 </style>
 </head>
 <body>
 
+<header>
 <h1>PerfumeMatch</h1>
-<h2>Découvrez le parfum qui vous ressemble vraiment</h2>
-<p>
-Trouve le parfum qui te correspond vraiment.
-</p>
+<p>Découvre le parfum qui te correspond le mieux !</p>
+</header>
 
-<p>
-PerfumeMatch t’aide à découvrir des parfums en fonction
-de ta personnalité, de ton humeur et de ton univers.
-</p>
+<section class="main-section">
+<h2>Prêt·e à trouver ton parfum parfait ?</h2>
+<p>Réponds à quelques questions simples pour révéler ton profil olfactif et découvrir des parfums qui te correspondent parfaitement.</p>
+<a href="quiz.html" class="btn-start">Commencer le quiz</a>
+</section>
 
-<button id="start-button" onclick="location.href='matching.html'">Commencer le matching</button>
+<section class="how-it-works">
+<h3>Comment ça marche :</h3>
+<ul>
+<li>Réponds à un quiz de 8 questions rapides.</li>
+<li>Découvre ton profil olfactif unique.</li>
+<li>Reçois une sélection de parfums recommandés juste pour toi.</li>
+</ul>
+</section>
+
+<footer>
+&copy; 2026 PerfumeMatch | <a href="#">Contact</a> | Tous droits réservés
+</footer>
 
 </body>
 </html>
